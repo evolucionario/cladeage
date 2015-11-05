@@ -11,6 +11,7 @@ Given a set of fossil ages for a specific clade, these functions return a probab
 Suggestions and contributions are welcomed.
 
 REFERENCES
+
 Claramunt, S., & J. Cracraft 2015. A new time-tree reveals Earth history's imprint on the evolution of modern birds. ScienceAdvances in press.
 Solow, A. R. 2003. Estimation of stratigraphic ranges when fossil finds are not randomly distributed. Paleobiology 29(2):181-185.
 Wang, S. C. 2010. Principles of statistical inference: likelihood and the Bayesian paradigm. Pp. 1-18 in J. Alroy & G. Hunt (eds.) Quantitative methods in paleobiology. The Paleontological Society Papers 16.
