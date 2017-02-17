@@ -2,7 +2,9 @@ FUNCTIONS FOR GENERATING EMPIRICAL PRIORS OF CLADE AGE USING THE FOSSIL RECORD
 
 Author
 Santiago Claramunt
+
 Department of Natural History, Royal Ontario Museum, Toronto, Ontario M5S 2C6, Canada.
+
 E-mail: sclaramunt@rom.on.ca
 
 
