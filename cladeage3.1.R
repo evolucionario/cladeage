@@ -164,9 +164,14 @@ DLnorm <- function(x, mode, sdlog) {
 }
 
 
-hist(sample1, breaks=500, freq=FALSE, xlim=c(50,120))
 
-curve(DLnorm(x-50, sdlog=0.85, mode=56-50), col='red', lwd=3, add=TRUE)
+hist(rage(n=10000, min.ages=c(50, 42, 35, 30, 25, 18, 10), max.ages=c(56, 48, 38, 40, 25, 22, 14)), breaks=200, freq=FALSE, xlim=c(0,120), col="#56B4E9", border="white", xlab="Clade age (Ma)", main="", yaxs="i", xaxs="i", xpd=TRUE)
+
+lines(50:120, DLnorm(50:120-50, sdlog=0.7, mode=4), col='#D55E00', lwd=3, add=TRUE, lend=1)
+
+rect(xleft=c(50, 42, 35, 30, 25, 18, 10), ybottom=0, xright=c(56, 48, 38, 40, 25, 22, 14), ytop=0.005, col=rgb(0.6, 0.6, 0.6, 0.75), border=NA)
+
+
 
 
 # Age uncertainty and Solow's method
