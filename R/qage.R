@@ -1,0 +1,88 @@
+
+##' @title Quantile-based age estimation
+##' @description Quantile function that computes the age corresponding to a
+##' particular probability for the upper bound of a distribution of ages
+##' (Strauss & Sadler 1989, Gingerich & Uhen 1998, Solow 2003). The method of
+##' Strauss & Sadler (1989) assumes that the distribution of fossil ages is
+##' uniform and their formula depends on the fossil ages range and the number of
+##' fossil ages. The method of Solow (2003) is a general method for non-uniform
+##' distributions and depends on the temporal gap between the oldest and the
+##' second oldest fossil ages. Both methods assume that fossil ages are
+##' independent samples from the same distribution (only relevant for the two
+##' oldest ages for Solow's method), therefore, fossils should be as independent
+##' as possible (ideally from different geological formations and different
+##' regions).
+##' 
+##' In the particular case where there are only two fossil ages and no baseline
+##' age specified, Strauss & Sadler's and Solow's methods converge to the same
+##' result; the quantile functions are simply Xn/(1-P), and the likelihood
+##' function is 1/X.
+##' @param p The desired probability level
+##' @param ages A vector of fossil ages. These do not need to be sorted
+##' @param baseline Youngest bound of the distribution that could be the present
+##' (=0) or some other geological age of reference. If a baseline is not
+##' provided, the minimum value of ages is used as baseline and n-1 is used for
+##' the sample size instead of n for calculations (Solow 2003).
+##' @param method Either \code{"StraussSadler"} for Strauss & Sadler's (1989)
+##' method (default) or \code{"Solow"} for Solow's (2003) method. A third option
+##' is to use the qbeta function (option \code{"Beta"}), since the ratio between
+##' the observed timespan and the real timespan for Strauss & Sadler's model is
+##' distributed according to a Beta distribution with parameters N and 1 (Wang
+##' et al. 2009); this should give the same results as "StraussSadler"
+##' @return A numeric value (or vector of numeric values, if multiple p values
+##' are provided) representing the age estimate of the clade origin given the
+##' method a p value provided
+##' @examples
+##'   \dontrun{
+##'   # The following demonstrates how inferences depend on p and method
+##'   qage(p=c(0.1, 0.5, 0.9), ages=c(54, 30, 25, 14, 5));
+##'   qage(p=c(0.1, 0.5, 0.9), ages=c(54, 30, 25, 14, 5), method="Beta");
+##'   qage(p=c(0.1, 0.5, 0.9), ages=c(54, 30, 25, 14, 5), method="Solow");
+##'   }
+##' @importFrom Rdpack reprompt
+##' @references
+##' \insertRef{Claramunt2015}{cladeage}
+##' 
+##' \insertRef{Gingerich1998}{cladeage}
+##' 
+##' \insertRef{Norris2015}{cladeage}
+##' 
+##' \insertRef{Solow2003}{cladeage}
+##' 
+##' \insertRef{Strauss1989}{cladeage}
+##' 
+##' \insertRef{Wang2007}{cladeage}
+##' 
+##' \insertRef{Wang2009}{cladeage}
+##' 
+##' \insertRef{Wang2010}{cladeage}
+##' @export
+qage <- function(p=0.5, ages, baseline=NULL, method="StraussSadler") {
+  
+  # If a baseline is not provided, use the minimum of ages as the baseline and
+  # subtract one from n.
+  if (is.null(baseline)) {
+    baseline <- min(ages);
+    n <- length(ages) -1;
+  } else {
+    n <- length(ages);
+  }
+  
+  # Apply the baseline
+  A <- ages - baseline;
+  
+  if (method=="StraussSadler") {
+    X <- max(A)*(1-p)^-(1/n);
+  } else if(method=="Beta") {
+    Y <- qbeta(p=p, shape1=n, shape2=1);
+    X <- max(A)/Y;
+  } else if (method=="Solow") {
+    N <- length(A);
+    sA <- sort(A);
+    Z <- sA[N] - sA[N-1];
+    X <- max(A) + Z*p/(1-p);
+  }
+  
+  return (X + baseline);
+}
+

@@ -1,0 +1,22 @@
+Package: cladeage
+Title: CladeAge: Estimating Clade Age Using The Fossil Record
+Version: 0.1
+Authors@R: 
+    c(person(given = "Santiago",
+           family = "Claramunt",
+           role = c("aut", "cre", "cph"),
+           email = "sclaramunt@rom.on.ca",
+           comment = c(ORCID = "0000-0002-8926-5974")),
+    person(given = "Joseph",
+           family = "Brown",
+           role = c("aut", "cph"),
+           comment = c(ORCID = "0000-0002-3835-8062")))
+Description: These functions model the uncertainty about the age of a clade based on its fossil record. The primary strategy is to generate a random sample of possible clade ages using quantile functions. These numbers can then be used to generate a histogram and fit probability functions for using as priors in Bayesian divergence time estimation (Claramunt & Cracraft 2015).
+License: BSD_2_clause + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: Rdpack
+RdMacros: Rdpack
+
