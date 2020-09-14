@@ -17,8 +17,10 @@
 ##' bracketing geological strata, age maximums and minimums are set for each
 ##' fossil.
 ##' @importFrom stats qbeta runif
+##' @return A numeric vector of length \code{n} representing simulated clade
+##' ages
 ##' @examples
-##'   \dontrun{
+##' \dontrun{
 ##'   # Example using the default method of Strauss & Sadler (1989)
 ##'   hist(rage(n=10000, min.ages=c(50, 30, 25, 14, 3.5)), breaks=500,
 ##'     freq=FALSE, xlim=c(50,120), xlab="Clade Age",

@@ -33,7 +33,7 @@
 ##' are provided) representing the age estimate of the clade origin given the
 ##' method a p value provided
 ##' @examples
-##'   \dontrun{
+##' \dontrun{
 ##'   # The following demonstrates how inferences depend on p and method
 ##'   qage(p=c(0.1, 0.5, 0.9), ages=c(54, 30, 25, 14, 5));
 ##'   qage(p=c(0.1, 0.5, 0.9), ages=c(54, 30, 25, 14, 5), method="Beta");

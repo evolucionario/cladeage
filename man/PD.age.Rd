@@ -58,7 +58,7 @@ latter, the minimum and maximum ages are treated as bounds on a uniform
 distribution. \code{PD.age.plot} plots the distribution of interest.
 }
 \examples{
-  \dontrun{
+\dontrun{
   # No fossil age uncertainty
   PD.age(c(54,31, 25, 14, 5));
   PD.age(c(54,31, 25, 14, 5), baseline=0);

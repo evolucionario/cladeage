@@ -28,7 +28,7 @@
 ##' @importFrom graphics abline axis mtext rect box lines par
 ##' @importFrom grDevices gray
 ##' @examples
-##'   \dontrun{
+##' \dontrun{
 ##'   # No fossil age uncertainty
 ##'   PD.age(c(54,31, 25, 14, 5));
 ##'   PD.age(c(54,31, 25, 14, 5), baseline=0);
@@ -139,7 +139,7 @@ PD.age.plot <- function(x, baseline=NULL, p.max=0.99, reps=1000, breaks=100, lin
   if (dim(x)[2] == 1) {
     dens <- PD.age(x, baseline=baseline, p.max=p.max);
     
-    plot(dens,type='n', ylim=c(0,max(dens$P)*1.1), ann=FALSE, axes=FALSE, ...);
+    graphics::plot(dens,type='n', ylim=c(0,max(dens$P)*1.1), ann=FALSE, axes=FALSE, ...);
     box();
     abline(v=max(x), lwd=2, col=gray(0.8));
     lines(dens, type='l', lwd=5, col=line.col);
@@ -147,7 +147,7 @@ PD.age.plot <- function(x, baseline=NULL, p.max=0.99, reps=1000, breaks=100, lin
   } else if (dim(x)[2] == 2) {
     dens <- PD.age.unc(x, baseline=baseline, p.max=p.max, reps=reps, breaks=breaks)
     
-    plot(dens, type='n', ylim=c(0,max(dens$P)*1.1), axes=FALSE, ann=FALSE, ...);
+    graphics::plot(dens, type='n', ylim=c(0,max(dens$P)*1.1), axes=FALSE, ann=FALSE, ...);
     box();
     rect(xleft=max(x[,2]), ybottom=0, xright=max(x[,1]), ytop=1, col=gray(0.8),
          border=gray(0.8), lwd=2);

@@ -22,6 +22,10 @@ be restricted if the sample is used in Monte Carlo simulations.}
 
 \item{...}{Other options passed to \code{qage}}
 }
+\value{
+A numeric vector of length \code{n} representing simulated clade
+ages
+}
 \description{
 This function uses the quantile function above to generate
 random clade ages from the corresponding models.
@@ -33,7 +37,7 @@ bracketing geological strata, age maximums and minimums are set for each
 fossil.
 }
 \examples{
-  \dontrun{
+\dontrun{
   # Example using the default method of Strauss & Sadler (1989)
   hist(rage(n=10000, min.ages=c(50, 30, 25, 14, 3.5)), breaks=500,
     freq=FALSE, xlim=c(50,120), xlab="Clade Age",
