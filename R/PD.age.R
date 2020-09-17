@@ -107,28 +107,29 @@ PD.age.unc <- function(x, baseline=NULL, p.max=0.99, reps=1000, breaks=100) {
   }
   
   slist <- list();
-  for(i in 1:reps) {slist[[i]] <- simages[,i];}
+  for (i in 1:reps) {
+      slist[[i]] <- simages[,i];
+  }
   
   UPDFs <- lapply(slist, PD.age, baseline=baseline, p.max=p.max)
   
   # Put all values in two vectors
   UPDFsx <- numeric();
   UPDFsPD <- numeric();
-  for(i in 1:length(UPDFs)) {
-    UPDFsx <- append(UPDFsx, UPDFs[[i]][,'x']);
-    UPDFsPD <- append(UPDFsPD, UPDFs[[i]][,'P']);
+  for (i in 1:length(UPDFs)) {
+    UPDFsx <- append(UPDFsx, UPDFs[[i]][,'age']);
+    UPDFsPD <- append(UPDFsPD, UPDFs[[i]][,'p']);
   }
   
   Breaks <- seq(from=max(upper), to=max(UPDFsx), length.out=breaks);
   Density <- numeric();
   
-  for(i in 2:length(Breaks)-1) {
+  for (i in 2:length(Breaks)-1) {
     Density[i] <- sum(UPDFsPD[UPDFsx >= Breaks[i] & UPDFsx < Breaks[i+1]]);
   }
   
   Density <- Density/reps;
-  Results <- as.data.frame(cbind(x= Breaks[-length(Breaks)], P=Density));
-  colnames(Results) <- c("age", "p");
+  Results <- as.data.frame(cbind(age=Breaks[-length(Breaks)], p=Density));
   
   return (Results);
 }
