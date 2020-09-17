@@ -1,4 +1,4 @@
-CladeAge: Empirical Priors of Clade Age Using the Fossil Record
+### CladeAge: Empirical Priors of Clade Age Using the Fossil Record
 ---------------
 Santiago Claramunt
 
@@ -6,29 +6,30 @@ Department of Natural History, Royal Ontario Museum, and
 Department of Ecology and Evolutionary Biology, University of Toronto, Ontario, Canada.
 
 E-mail: sclaramunt@rom.on.ca
+![](rage_solow_uncertain.png)
+An example simulation using the Solow (2003) method incorporating fossil age uncertainty.
 
-Overview
+### Overview
 ---------------
 Given a set of fossil ages for a specific clade, these functions model the
 uncertainty about the crown age of the clade. The basic method is based on the
-model of Strauss & Sadler (1989) and assumes a uniform distribution of presicely
+model of Strauss & Sadler (1989) and assumes a uniform distribution of precisely
 known fossil ages but there are options for incorporating fossil age
-uncertatinty (Claramunt & Cracraft, 2015) and non-uniform fossil age
+uncertainty (Claramunt & Cracraft, 2015) and non-uniform fossil age
 distributions (Solow, 2003). The original version of this code aimed at
 generating probability density functions, but the current version instead
 implements a more efficient strategy involving the generation of random samples
 of possible clade ages using quantile functions. These numbers can then be used
 to generate a histogram and fit probability functions for using as priors in
-Bayesian time tree estiamtion (Claramunt & Cracraft, 2015).
+Bayesian time tree estimation (Claramunt & Cracraft, 2015).
 
-Installation
+### Installation
 ---------------
 ```
 install.packages("devtools");
 devtools::install_github("josephwb/cladeage", dependencies=TRUE);
 ```
-
-References
+### References
 ---------------
 Claramunt S, Cracraft J. 2015. A new time tree reveals Earth history’s imprint
 on the evolution of modern birds. Science Advances, 1(11), e1501005. doi:
