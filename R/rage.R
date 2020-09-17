@@ -48,7 +48,7 @@
 rage <- function(n, min.ages, max.ages=NULL, max.p=1, ...) {
   if (is.null(max.ages)) {
     rA <- qage(p=stats::runif(n, max=max.p), ages=min.ages, ...);
-  } else if (length(min.ages)==length(min.ages)) {
+  } else if (length(min.ages) == length(min.ages)) {
     rA <- numeric(length=n);
     for (i in 1:n) {
       A <- stats::runif(length(min.ages), min=min.ages, max=max.ages);

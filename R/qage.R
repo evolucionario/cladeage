@@ -64,7 +64,7 @@ qage <- function(p=0.5, ages, baseline=NULL, method="StraussSadler") {
   # subtract one from n.
   if (is.null(baseline)) {
     baseline <- min(ages);
-    n <- length(ages) -1;
+    n <- length(ages) - 1;
   } else {
     n <- length(ages);
   }
@@ -72,12 +72,12 @@ qage <- function(p=0.5, ages, baseline=NULL, method="StraussSadler") {
   # Apply the baseline
   A <- ages - baseline;
   
-  if (method=="StraussSadler") {
-    X <- max(A)*(1-p)^-(1/n);
-  } else if(method=="Beta") {
+  if (method == "StraussSadler") {
+    X <- max(A) * (1-p)^-(1/n);
+  } else if(method == "Beta") {
     Y <- stats::qbeta(p=p, shape1=n, shape2=1);
     X <- max(A)/Y;
-  } else if (method=="Solow") {
+  } else if (method == "Solow") {
     N <- length(A);
     sA <- sort(A);
     Z <- sA[N] - sA[N-1];

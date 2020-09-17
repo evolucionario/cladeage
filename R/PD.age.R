@@ -60,7 +60,7 @@ PD.age <- function(x, baseline=NULL, p.max=0.99) {
   # subtract one from n.
   if (is.null(baseline)) {
     baseline <- min(x);
-    n <- length(x) -1;
+    n <- length(x) - 1;
   } else {
     n <- length(x);
   }
@@ -70,7 +70,7 @@ PD.age <- function(x, baseline=NULL, p.max=0.99) {
   
   # Calculate the maximum value to be evaluated, set as the value at the p.max
   # cumulative probability. See Solow (2003) equation 4. 
-  MAX <- max(X)*(1-p.max)^-(1/n);
+  MAX <- max(X) * (1-p.max)^-(1/n);
   
   # Generate a sequence of ages for which the probability will be calculated
   Y <- max(X):MAX;
@@ -78,14 +78,14 @@ PD.age <- function(x, baseline=NULL, p.max=0.99) {
   # Calculate the likelihood of those ages Yi given the observed fossil ages,
   # which is numerically equal to the joint probability of observing X given
   # that the age of the clade is Y (Wang 2010):
-  Lik <- 1/Y^n;
+  Lik <- 1 / Y^n;
   
   # Calculate the area under the curve. Because time intervals are 1 and it is a
   # monotonically decreasing curve
-  area <- sum(Lik) - Lik[1]/2;
+  area <- sum(Lik) - Lik[1] / 2;
   
   # Rescale Likelihood so area = p.max
-  P <- Lik*p.max/area;
+  P <- Lik * p.max / area;
   pd <- as.data.frame(cbind(x=Y+baseline, P));
   colnames(pd) <- c("age", "p");
   
@@ -103,7 +103,7 @@ PD.age.unc <- function(x, baseline=NULL, p.max=0.99, reps=1000, breaks=100) {
   
   simages <- matrix(nrow=N, ncol=reps)
   for (i in 1:N) {
-    simages[i,] <- runif(reps, min= upper[i], max= lower[i]);
+    simages[i,] <- runif(reps, min=upper[i], max=lower[i]);
   }
   
   slist <- list();
