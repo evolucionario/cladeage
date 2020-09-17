@@ -92,6 +92,7 @@ PD.age <- function(x, baseline=NULL, p.max=0.99) {
   return (pd);
 }
 
+##' @export
 ##' @rdname PD.age
 PD.age.unc <- function(x, baseline=NULL, p.max=0.99, reps=1000, breaks=100) {
   
@@ -132,6 +133,7 @@ PD.age.unc <- function(x, baseline=NULL, p.max=0.99, reps=1000, breaks=100) {
   return (Results);
 }
 
+##' @export
 ##' @rdname PD.age
 PD.age.plot <- function(x, baseline=NULL, p.max=0.99, reps=1000, breaks=100,
                         line.col="red", ...) {
