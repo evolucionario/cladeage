@@ -56,7 +56,8 @@ fossil.
   # Strauss & Sadler (1989) method incorporating fossil age uncertainty
   hist(rage(n=10000, min.ages=c(50, 30, 25, 14, 3.5),
     max.ages=c(56, 35, 25, 14, 6)), breaks=500, freq=FALSE, xlim=c(50,120),
-    xlab="Age", main="Solow Example (with fossil age uncertainty)\nn=1000, min.ages=c(50, 30, 25, 14, 3.5), max.ages=c(56, 35, 25, 14, 6))\nmax.p=0.95");
+    xlab="Age", main="Solow Example (with fossil age uncertainty)\nn=1000,
+    min.ages=c(50, 30, 25, 14, 3.5), max.ages=c(56, 35, 25, 14, 6))\nmax.p=0.95");
   curve(dlnorm(x-50, meanlog=2.6, sdlog=0.9), col='blue', lwd=2, add=TRUE);
   legend("right", legend="dlnorm", col="blue", lty=1, lwd=2, box.lty=0);
   }
