@@ -25,8 +25,8 @@
 ##' @return In the case of \code{PD.age} and \code{PD.age.unc}, a dataframe with
 ##' two columns: \code{age} (the geological age under consideration), and
 ##' \code{p} (the associated probability for the clade origin).
-##' @importFrom graphics abline axis mtext rect box lines par
 ##' @importFrom grDevices gray
+##' @importFrom graphics abline axis mtext rect box lines par plot
 ##' @examples
 ##' \dontrun{
 ##'   # No fossil age uncertainty
@@ -40,9 +40,11 @@
 ##'   PD.age.plot(c(54,31, 25, 14, 5), p.max=0.99);
 ##'   curve(dexp(x-54, rate=0.062), col='black', lwd=3, add=TRUE);
 ##'   
+##'   # Same, but use lognormal distribution
 ##'   PD.age.plot(cbind(c(56, 35, 25, 14, 6), c(50, 30, 25, 14, 3.5)));
 ##'   curve(dlnorm(x-50, meanlog=2.7, sdlog=1)*1.3, col='black', lwd=3, add=TRUE);
 ##'   }
+##' @importFrom Rdpack reprompt
 ##' @references
 ##' \insertRef{Claramunt2015}{cladeage}
 ##' 
@@ -131,28 +133,36 @@ PD.age.unc <- function(x, baseline=NULL, p.max=0.99, reps=1000, breaks=100) {
 }
 
 ##' @rdname PD.age
-PD.age.plot <- function(x, baseline=NULL, p.max=0.99, reps=1000, breaks=100, line.col="red", ...) {
+PD.age.plot <- function(x, baseline=NULL, p.max=0.99, reps=1000, breaks=100,
+                        line.col="red", ...) {
   
   x <- as.matrix(x);
-  par(las=1, lend=1, ljoin=1, yaxs='i');
+  graphics::par(las=1, lend=1, ljoin=1, yaxs='i');
   
   if (dim(x)[2] == 1) {
     dens <- PD.age(x, baseline=baseline, p.max=p.max);
     
-    graphics::plot(dens,type='n', ylim=c(0,max(dens$P)*1.1), ann=FALSE, axes=FALSE, ...);
-    box();
-    abline(v=max(x), lwd=2, col=gray(0.8));
-    lines(dens, type='l', lwd=5, col=line.col);
-    axis(1); mtext("time", 1, line=2.5); mtext("P", 2, las=1, line=2);
+    graphics::plot(dens,type='n', ylim=c(0, max(dens$P)*1.1), ann=FALSE,
+                   axes=FALSE, ...);
+    graphics::box();
+    graphics::abline(v=max(x), lwd=2, col=grDevices::gray(0.8));
+    graphics::lines(dens, type='l', lwd=5, col=line.col);
+    graphics::axis(1);
+    graphics::mtext("time", 1, line=2.5);
+    graphics::mtext("P", 2, las=1, line=2);
   } else if (dim(x)[2] == 2) {
-    dens <- PD.age.unc(x, baseline=baseline, p.max=p.max, reps=reps, breaks=breaks)
+    dens <- PD.age.unc(x, baseline=baseline, p.max=p.max, reps=reps,
+                       breaks=breaks);
     
-    graphics::plot(dens, type='n', ylim=c(0,max(dens$P)*1.1), axes=FALSE, ann=FALSE, ...);
-    box();
-    rect(xleft=max(x[,2]), ybottom=0, xright=max(x[,1]), ytop=1, col=gray(0.8),
-         border=gray(0.8), lwd=2);
-    lines(dens, type="s", lwd=5, col=line.col);
-    axis(1); mtext("time", 1, line=2.5); mtext("P", 2, las=1, line=2);
+    graphics::plot(dens, type='n', ylim=c(0,max(dens$P)*1.1), axes=FALSE,
+                   ann=FALSE, ...);
+    graphics::box();
+    graphics::rect(xleft=max(x[,2]), ybottom=0, xright=max(x[,1]), ytop=1,
+                   col=grDevices::gray(0.8), border=grDevices::gray(0.8), lwd=2);
+    graphics::lines(dens, type="s", lwd=5, col=line.col);
+    graphics::axis(1);
+    graphics::mtext("time", 1, line=2.5);
+    graphics::mtext("P", 2, las=1, line=2);
   } else {
     cat("Error: check the format of input data x");
   }

@@ -16,9 +16,9 @@
 ##' ages have uncertainty, typically upper and lower bounds defined by
 ##' bracketing geological strata, age maximums and minimums are set for each
 ##' fossil.
-##' @importFrom stats qbeta runif
 ##' @return A numeric vector of length \code{n} representing simulated clade
 ##' ages
+##' @importFrom stats runif
 ##' @examples
 ##' \dontrun{
 ##'   # Example using the default method of Strauss & Sadler (1989)
@@ -56,4 +56,3 @@ rage <- function(n, min.ages, max.ages=NULL, max.p=1, ...) {
   }
   return (rA);
 }
-

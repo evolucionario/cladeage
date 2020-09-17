@@ -70,6 +70,7 @@ distribution. \code{PD.age.plot} plots the distribution of interest.
   PD.age.plot(c(54,31, 25, 14, 5), p.max=0.99);
   curve(dexp(x-54, rate=0.062), col='black', lwd=3, add=TRUE);
   
+  # Same, but use lognormal distribution
   PD.age.plot(cbind(c(56, 35, 25, 14, 6), c(50, 30, 25, 14, 3.5)));
   curve(dlnorm(x-50, meanlog=2.7, sdlog=1)*1.3, col='black', lwd=3, add=TRUE);
   }

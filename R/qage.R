@@ -32,6 +32,7 @@
 ##' @return A numeric value (or vector of numeric values, if multiple p values
 ##' are provided) representing the age estimate of the clade origin given the
 ##' method a p value provided
+##' @importFrom stats qbeta
 ##' @examples
 ##' \dontrun{
 ##'   # The following demonstrates how inferences depend on p and method
@@ -74,7 +75,7 @@ qage <- function(p=0.5, ages, baseline=NULL, method="StraussSadler") {
   if (method=="StraussSadler") {
     X <- max(A)*(1-p)^-(1/n);
   } else if(method=="Beta") {
-    Y <- qbeta(p=p, shape1=n, shape2=1);
+    Y <- stats::qbeta(p=p, shape1=n, shape2=1);
     X <- max(A)/Y;
   } else if (method=="Solow") {
     N <- length(A);
@@ -85,4 +86,3 @@ qage <- function(p=0.5, ages, baseline=NULL, method="StraussSadler") {
   
   return (X + baseline);
 }
-
