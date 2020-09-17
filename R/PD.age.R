@@ -145,7 +145,7 @@ PD.age.plot <- function(x, baseline=NULL, p.max=0.99, reps=1000, breaks=100,
   if (dim(x)[2] == 1) {
     dens <- PD.age(x, baseline=baseline, p.max=p.max);
     
-    graphics::plot(dens,type='n', ylim=c(0, max(dens$P)*1.1), ann=FALSE,
+    graphics::plot(dens, type='n', ylim=c(0, max(dens$p)*1.1), ann=FALSE,
                    axes=FALSE, ...);
     graphics::box();
     graphics::abline(v=max(x), lwd=2, col=grDevices::gray(0.8));
@@ -157,7 +157,7 @@ PD.age.plot <- function(x, baseline=NULL, p.max=0.99, reps=1000, breaks=100,
     dens <- PD.age.unc(x, baseline=baseline, p.max=p.max, reps=reps,
                        breaks=breaks);
     
-    graphics::plot(dens, type='n', ylim=c(0,max(dens$P)*1.1), axes=FALSE,
+    graphics::plot(dens, type='n', ylim=c(0,max(dens$p)*1.1), axes=FALSE,
                    ann=FALSE, ...);
     graphics::box();
     graphics::rect(xleft=max(x[,2]), ybottom=0, xright=max(x[,1]), ytop=1,
