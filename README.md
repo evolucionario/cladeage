@@ -7,6 +7,7 @@ Department of Ecology and Evolutionary Biology, University of Toronto, Ontario, 
 
 E-mail: sclaramunt@rom.on.ca
 ![](rage_solow_uncertain.png)
+
 An example simulation using the Solow (2003) method incorporating fossil age uncertainty.
 
 ### Overview
