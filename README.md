@@ -28,7 +28,7 @@ Bayesian time tree estimation (Claramunt & Cracraft, 2015).
 ---------------
 ```
 install.packages("devtools");
-devtools::install_github("/cladeage", dependencies=TRUE);
+devtools::install_github("evolucionario/cladeage", dependencies=TRUE);
 ```
 ### References
 ---------------
