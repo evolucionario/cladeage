@@ -1,0 +1,29 @@
+language: r
+
+r: release
+
+os: linux
+dist: xenial
+
+before_install:
+ - echo "options(repos=c(CRAN = 'http://cran.rstudio.com'))" > ~/.Rprofile
+
+warnings_are_errors: true
+
+# use --as-cran for more draconian checks
+r_check_args: --run-dontrun
+cache: packages
+
+r_binary_packages:
+ - Rdpack
+
+notifications:
+  email:
+    recipients:
+      - phylo.jwb@gmail.com
+      - sclaramunt@rom.on.ca
+    on_success: always
+    on_failure: always
+
+after_script:
+ - ./travis-tool.sh dump_logs
