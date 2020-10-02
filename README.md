@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/evolucionario/cladeage.svg?branch=master)](https://travis-ci.com/evolucionario/cladeage)
+
 ### CladeAge: Empirical Priors of Clade Age Using the Fossil Record
 ---------------
 Santiago Claramunt
